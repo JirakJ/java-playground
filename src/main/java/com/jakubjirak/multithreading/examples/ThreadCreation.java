@@ -2,15 +2,7 @@ package com.jakubjirak.multithreading.examples;
 
 public class ThreadCreation {
     public static void main(String[] args) throws InterruptedException {
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //Code that will run in new thread
-                System.out.println("We are now in thread "+ Thread.currentThread().getName());
-                System.out.println("Current thread priority is "+ Thread.currentThread().getPriority());
-                throw new RuntimeException("Internal Exception");
-            }
-        });
+        Thread thread = new NewThread();
 
         thread.setUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler(){
 
@@ -27,5 +19,14 @@ public class ThreadCreation {
         System.out.println("We are in thread "+Thread.currentThread().getName()+" after starting a new thread.");
 
         Thread.sleep(10000);
+    }
+
+    private static class NewThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("We are now in thread "+ Thread.currentThread().getName());
+            System.out.println("Current thread priority is "+ Thread.currentThread().getPriority());
+            throw new RuntimeException("Internal Exception");
+        }
     }
 }
