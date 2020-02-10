@@ -24,8 +24,8 @@ public class ThreadCreation {
     private static class NewThread extends Thread {
         @Override
         public void run() {
-            System.out.println("We are now in thread "+ Thread.currentThread().getName());
-            System.out.println("Current thread priority is "+ Thread.currentThread().getPriority());
+            System.out.println("We are now in thread "+ this.currentThread().getName());
+            System.out.println("Current thread priority is "+ this.currentThread().getPriority());
             throw new RuntimeException("Internal Exception");
         }
     }
